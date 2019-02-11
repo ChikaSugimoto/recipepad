@@ -5,6 +5,7 @@
                 <h1 class="text-center">Add Recipe</h1>
                 <%= form_for @recipe do |f| %>
 
+
                 <div class="form-group">
                     <%= f.label :料理名 %>
                     <%= f.text_area :name, class: 'form-control' %>
@@ -36,6 +37,49 @@
                 </div>
 
     
+                <div class="form-direction">
+                        <div>
+                            <h2>1</h2>
+                        </div>
+                        <div>
+                            <%= f.label :作り方 %>
+                            <%= f.text_area :direction_comment_1, class: 'form-control' %>
+                        </div>
+                        <div>
+                            <%= f.label :写真 %>
+                            <%= f.file_field :direction_image_1 %>
+                        </div>
+                    </div>
+    
+
+                <div class="form-direction">
+                        <div>
+                            <h2>2</h2>
+                        </div>
+                        <div>
+                            <%= f.label :作り方 %>
+                            <%= f.text_area :direction_comment_2, class: 'form-control' %>
+                        </div>
+                        <div>
+                            <%= f.label :写真 %>
+                            <%= f.file_field :direction_image_2 %>
+                        </div>
+                    </div>
+    
+    
+                <div class="form-direction">
+                    <div>
+                        <h2>3</h2>
+                    </div>
+                    <div>
+                        <%= f.label :作り方 %>
+                        <%= f.text_area :direction_comment_3, class: 'form-control' %>
+                    </div>
+                    <div>
+                        <%= f.label :写真 %>
+                        <%= f.file_field :direction_image_3 %>
+                    </div>
+                </div>
 
                 <%= f.submit '投稿', class: 'btn btn-black btn-block' %>
 
