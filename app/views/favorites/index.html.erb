@@ -1,0 +1,19 @@
+<div class="topic-index-wrapper">
+    <div class="container">
+        <% @favorite_recipes.each do |recipe| %>
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="topic-index-single">
+                    <h2 class="topic-author">
+                        <%= recipe.user.name %>
+                    </h2>
+                    <%= image_tag recipe.main_image.url %>
+                    <%= image_tag 'icons/comment.png', class: 'topic-index-icon' %>
+                    <p class="topic-text">
+                        <%= recipe.description %>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <% end %>
+    </div>
