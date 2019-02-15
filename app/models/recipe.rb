@@ -6,11 +6,14 @@ class Recipe < ApplicationRecord
     validates :ingredient, presence: true
     validates :description, presence: true
 
-    belongs_to :user
-
-    has_many :favorites
-
+    mount_uploader :image, ImageUploader
     mount_uploader :main_image, ImageUploader
+
+    belongs_to :user
+    has_many :directions
+    has_many :favorites
+    has_many :favorite_users, through: :favorites, source: 'user'
+
 end
 
 

@@ -3,87 +3,55 @@
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
                 <h1 class="text-center">Add Recipe</h1>
-                <%= form_for @recipe do |f| %>
 
-
+                <%= form_tag("/recipes", method: :post, multipart: true) do %>
                 <div class="form-group">
-                    <%= f.label :料理名 %>
-                    <%= f.text_area :name, class: 'form-control' %>
+                    <%= label_tag '料理名' %>
+                    <%= text_field_tag 'recipe[name]' ,'',class: 'form-control'%>
                 </div>
 
                 <div class="form-group">
-                    <%= f.label :写真 %>
-                    <%= f.file_field :main_image %>
+                    <%= label_tag '写真' %>
+                    <%= file_field_tag 'recipe[main_image]' %>
                 </div>
 
                 <div class="form-group">
-                    <%= f.label :紹介文 %>
-                    <%= f.text_area :description, class: 'form-control' %>
+                    <%= label_tag '紹介文' %>
+                    <%= text_area_tag 'recipe[description]','',class: 'form-control' %>
                 </div>
 
                 <div class="form-group">
-                    <%= f.label :材料 %>
-                    <%= f.text_area :ingredient, class: 'form-control' %>
+                    <%= label_tag '材料' %>
+                    <%= text_area_tag 'recipe[ingredient]' ,'',class: 'form-control'%>
                 </div>
 
                 <div class="form-group">
-                    <%= f.label :作った背景 %>
-                    <%= f.text_area :situation, class: 'form-control' %>
+                    <%= label_tag '作った背景' %>
+                    <%= text_area_tag 'recipe[situation]','',class: 'form-control' %>
                 </div>
 
                 <div class="form-group">
-                    <%= f.label :コツ・ポイント %>
-                    <%= f.text_area :point, class: 'form-control' %>
+                    <%= label_tag 'コツ・ポイント' %>
+                    <%= text_area_tag 'recipe[point]' ,'',class: 'form-control'%>
                 </div>
-
-    
-                <div class="form-direction">
-                        <div>
-                            <h2>1</h2>
-                        </div>
-                        <div>
-                            <%= f.label :作り方 %>
-                            <%= f.text_area :direction_comment_1, class: 'form-control' %>
-                        </div>
-                        <div>
-                            <%= f.label :写真 %>
-                            <%= f.file_field :direction_image_1 %>
-                        </div>
-                    </div>
-    
 
                 <div class="form-direction">
-                        <div>
-                            <h2>2</h2>
-                        </div>
-                        <div>
-                            <%= f.label :作り方 %>
-                            <%= f.text_area :direction_comment_2, class: 'form-control' %>
-                        </div>
-                        <div>
-                            <%= f.label :写真 %>
-                            <%= f.file_field :direction_image_2 %>
-                        </div>
-                    </div>
-    
-    
-                <div class="form-direction">
                     <div>
-                        <h2>3</h2>
+                        <h2>1</h2>
                     </div>
                     <div>
-                        <%= f.label :作り方 %>
-                        <%= f.text_area :direction_comment_3, class: 'form-control' %>
+                        <%= label_tag '作り方' %>
+                        <%= text_area_tag 'direction[comment]','',class: 'form-control' %>
                     </div>
                     <div>
-                        <%= f.label :写真 %>
-                        <%= f.file_field :direction_image_3 %>
+                        <%= label_tag '写真' %>
+                        <%= file_field_tag 'direction[image]' %>
                     </div>
                 </div>
 
-                <%= f.submit '投稿', class: 'btn btn-black btn-block' %>
-
+                <%= submit_tag  '送信', class: 'btn btn-black btn-block' %>
                 <% end %>
+
             </div>
         </div>
     </div>

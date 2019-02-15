@@ -1,3 +1,5 @@
 class Direction < ApplicationRecord
-    validates :recipe_id, presence: true
+    belongs_to :recipe
+
+    mount_uploader :image, ImageUploader
 end

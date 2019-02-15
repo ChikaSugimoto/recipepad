@@ -1,0 +1,58 @@
+<div class="topic-index-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="topic-index-single">
+                    <h2 class="topic-author">
+                        <%= link_to edit_recipe_path(id: @recipe.id), method: :get do %>
+                        <%= @recipe.name %>
+                        <% end %>
+                    </h2>
+
+                    <%= image_tag @recipe.main_image.url %>
+                    <p class="topic-text">
+                        材料：
+                        <%= @recipe.ingredient %>
+                    </p>
+                    <p class="topic-text">
+                        作った背景：
+                        <%= @recipe.situation %>
+                    </p>
+                    <p class="topic-text">
+                        コツ・ポイント：
+                        <%= @recipe.point %>
+                    </p>
+
+                    <% @recipe.directions.each do |direction| %>
+                    <div class="form-direction">
+                        <div>
+                            <h2><%= direction.number %></h2>
+                        </div>
+                        <div>
+                            <%= image_tag direction.image.url %>
+                        </div>
+                        <div>
+                            作り方:
+                            <%= direction.comment %>
+                        </div>
+                    </div>
+                    <% end %>
+                </div>
+  
+            <%= form_for Direction.new,url: "/direction_create" do |f| %>
+                <%= f.file_field :image %>
+                <%= f.text_area :comment %>
+                
+                <%= f.hidden_field :recipe_id,value: params[:id]%>
+                <%  if @recipe.directions.blank? %>
+                 <%= f.hidden_field :number,value: 1%>
+                 <% else%>
+                 <%= f.hidden_field :number,value: @recipe.directions.last.number+1%>
+
+            <% end %>
+            <%= submit_tag "作り方を投稿する" %>
+            <% end %>
+            </div>
+        </div>
+    </div>
+</div>

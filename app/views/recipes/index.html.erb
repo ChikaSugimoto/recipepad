@@ -5,7 +5,7 @@
             <div class="col-md-6 col-md-offset-3">
                 <div class="topic-index-single">
                     <h2 class="topic-author">
-                        <%= link_to edit_recipe_path(id: recipe.id), method: :get do %>
+                        <%= link_to recipe_path(id: recipe.id), method: :get do %>
                         <%= recipe.name %>
                         <% end %>
                     </h2>
@@ -17,10 +17,19 @@
                     </h3>
                     <%= image_tag recipe.main_image.url %>
 
+                    <% if !recipe.favorite_users.include?(current_user) %>
                     <%= link_to favorites_path(recipe_id: recipe.id), method: :post do %>
                     <%= image_tag 'icons/heart-black.png', class: 'topic-index-icon' %>
                     <% end %>
+                    <% end %>
+
+                    <%= link_to recipe_path(id: recipe.id), method: :delete do %>
                     <%= image_tag 'icons/delete.png', class: 'topic-index-icon' %>
+                    <% end %>
+
+                    <%= link_to edit_recipe_path(id: recipe.id), method: :get do %>
+                    <p class="topic-index-icon">編集</p>
+                    <% end %>
 
                     <p class="topic-text">
                         材料：
@@ -34,10 +43,11 @@
                         コツ・ポイント：
                         <%= recipe.point %>
                     </p>
-
                 </div>
             </div>
         </div>
+
+
         <% end %>
     </div>
 </div>

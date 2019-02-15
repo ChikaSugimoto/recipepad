@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 
   get 'favorites/index'
   post '/favorites', to: 'favorites#create'
-
+  post "/direction_create" => "recipes#direction_create"
   resources :directions
 
   resources :users
