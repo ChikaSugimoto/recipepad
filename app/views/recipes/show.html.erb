@@ -26,7 +26,9 @@
                     <% @recipe.directions.each do |direction| %>
                     <div class="form-direction">
                         <div>
-                            <h2><%= direction.number %></h2>
+                            <h2>
+                                <%= direction.number %>
+                            </h2>
                         </div>
                         <div>
                             <%= image_tag direction.image.url %>
@@ -38,20 +40,18 @@
                     </div>
                     <% end %>
                 </div>
-  
-            <%= form_for Direction.new,url: "/direction_create" do |f| %>
+
+                <!-- <%= form_for Direction.new,url: "/direction_create" do |f| %>
                 <%= f.file_field :image %>
                 <%= f.text_area :comment %>
-                
                 <%= f.hidden_field :recipe_id,value: params[:id]%>
                 <%  if @recipe.directions.blank? %>
-                 <%= f.hidden_field :number,value: 1%>
-                 <% else%>
-                 <%= f.hidden_field :number,value: @recipe.directions.last.number+1%>
-
-            <% end %>
-            <%= submit_tag "作り方を投稿する" %>
-            <% end %>
+                <%= f.hidden_field :number,value: 1%>
+                <% else%>
+                <%= f.hidden_field :number,value: @recipe.directions.last.number+1%>
+                <% end %>
+                <%= submit_tag "作り方を投稿する" %>
+                <% end %> -->
             </div>
         </div>
     </div>

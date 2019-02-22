@@ -6,6 +6,7 @@ class RecipesController < ApplicationController
 
     def  index
         @recipes = Recipe.all.includes(:favorite_users)
+        @direction = Direction.find_by(id: params[:id])
     end
 
     def show
@@ -20,6 +21,12 @@ class RecipesController < ApplicationController
         if @recipe.save
         @direction.recipe_id = @recipe.id
         @direction.save
+        @direction.image = params[:image2]
+        @direction.commnet = params[:comment2]
+        @direction.number = 2
+        @direction.recipe_id = @recipe.id
+        @direction.save
+        
         redirect_to recipes_path, success: '投稿に成功しました'
         else
         flash.now[:danger] = "投稿に失敗しました"
@@ -63,7 +70,7 @@ class RecipesController < ApplicationController
     end
 
     def direction_params
-        params.require(:direction).permit(:image, :comment,:number,:recipe_id)
+        params.require(:direction).permit(:image,:comment,:number,:comment2,:number2,:recipe_id)
     end
 
 

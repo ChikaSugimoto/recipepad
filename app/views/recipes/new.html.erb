@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
-                <h1 class="text-center">Add Recipe</h1>
+                <h1 class="text-center function-name">Add Recipe</h1>
 
                 <%= form_tag("/recipes", method: :post, multipart: true) do %>
                 <div class="form-group">
@@ -47,8 +47,22 @@
                         <%= label_tag '写真' %>
                         <%= file_field_tag 'direction[image]' %>
                     </div>
+
+                    <div>
+                        <h2>2</h2>
+                    </div>
+                    <div>
+                        <%= label_tag '作り方' %>
+                        <%= text_area_tag 'comment2','',class: 'form-control' %>
+                    </div>
+                    <div>
+                        <%= label_tag '写真' %>
+                        <%= file_field_tag 'image2' %>
+                    </div>
                 </div>
 
+
+                
                 <%= submit_tag  '送信', class: 'btn btn-black btn-block' %>
                 <% end %>
 
