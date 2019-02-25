@@ -5,32 +5,47 @@ class RecipesController < ApplicationController
     end
 
     def  index
-        @recipes = Recipe.all.includes(:favorite_users)
-        @direction = Direction.find_by(id: params[:id])
-    end
-
-    def show
-        @recipe = Recipe.find_by(id: params[:id])
+        @recipes = Recipe.all.includes(:favorite_users, :directions)
+        
     end
 
     def create
 
+        # direction1 = Direction.new
+        # direction1.recipe_id = 44
+        # direction1.number = 1
+        # direction1.comment = "test"
+        # direction1.image = "tes"
+        # direction1.save!
+
+
+
+
         @recipe = current_user.recipes.new(recipe_params)
-        @direction = Direction.new(direction_params)
-        @direction.number = 1
         if @recipe.save
-        @direction.recipe_id = @recipe.id
-        @direction.save
-        @direction.image = params[:image2]
-        @direction.commnet = params[:comment2]
-        @direction.number = 2
-        @direction.recipe_id = @recipe.id
-        @direction.save
-        
-        redirect_to recipes_path, success: '投稿に成功しました'
-        else
-        flash.now[:danger] = "投稿に失敗しました"
-        render :new
+            unless params["direction1"].empty?
+                direction1 = Direction.new
+                direction1.recipe_id = @recipe.id
+                direction1.number = 1
+                direction1.comment = params["direction1"]["comment"]
+                direction1.image = params["direction1"]["image"]
+                 binding.pry
+                if direction1.save
+                    direction2 = Direction.new
+                    direction2.recipe_id = @recipe.id
+                    direction2.number = 1
+                    direction2.comment = params["direction1"]["comment"]
+                    direction2.image = params["direction1"]["image"]
+                if direction2.save
+    
+                    # redirect_to recipes_path, success: '投稿に成功しました'
+                    render :new 
+                else
+                    flash.now[:danger] = "投稿に失敗しました"
+                    render :new 
+                    
+                end
+            end
         end
     end
 
@@ -40,7 +55,6 @@ class RecipesController < ApplicationController
     end
 
     def  update
-
     @recipe = Recipe.find_by(id: params[:id])
         @recipe.update(recipe_params)
         if @recipe.save
@@ -51,27 +65,20 @@ class RecipesController < ApplicationController
         end
     end
 
-
     def  destroy
         @recipe = Recipe.find_by(id: params[:id])
         @recipe.destroy
         redirect_to recipes_path, success: '投稿を削除しました'
     end
-
-    def direction_create
-        @direction = Direction.new(direction_params)
-        @direction.save
-        redirect_to recipes_path
-    end
     
     private
     def recipe_params
-        params.require(:recipe).permit(:main_image, :description, :name, :ingredient, :situation, :point)
+        params.require(:recipe).permit(:main_image, :description, :name, :ingredient, :situation, :point, :user_id)
     end
+    #private
+    # def direction1_params
+    #     params.require(:direction).permit(:comment, :image)
+    # end
 
-    def direction_params
-        params.require(:direction).permit(:image,:comment,:number,:comment2,:number2,:recipe_id)
-    end
-
-
+end
 end

@@ -16,11 +16,12 @@
                         <%= recipe.user.name %>
                     </h3>
                     <%= image_tag recipe.main_image.url %>
+                    
 
                     <% if !recipe.favorite_users.include?(current_user) %>
-                    <%= link_to favorites_path(recipe_id: recipe.id), method: :post do %>
-                    <%= image_tag 'icons/heart-black.png', class: 'topic-index-icon' %>
-                    <% end %>
+                        <%= link_to favorites_path(recipe_id: recipe.id), method: :post do %>
+                        <%= image_tag 'icons/heart-black.png', class: 'topic-index-icon' %>
+                        <% end %>
                     <% end %>
 
                     <%= link_to recipe_path(id: recipe.id), method: :delete do %>
@@ -43,8 +44,6 @@
                         コツ・ポイント：
                         <%= recipe.point %>
                     </p>
-
-
                 </div>
 
             </div>

@@ -5,7 +5,8 @@
                 <h1 class="text-center function-name">Edit Recipe</h1>
                 <%= form_for @recipe do |f| %>
 
-                <%= f.text_area :id, class: 'form-control' %>
+                <!-- <%= f.text_area :id, class: 'form-control' %> -->
+                <%= f.hidden_field :id %>
 
                 <div class="form-group">
                     <%= f.label :料理名 %>
@@ -36,7 +37,6 @@
                     <%= f.label :コツ・ポイント %>
                     <%= f.text_area :point, class: 'form-control' %>
                 </div>
-                
 
                 <%= f.submit '投稿', class: 'btn btn-black btn-block' %>
 

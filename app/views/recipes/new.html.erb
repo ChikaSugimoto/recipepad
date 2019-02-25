@@ -38,10 +38,11 @@
                 <div class="form-direction">
                     <div>
                         <h2>1</h2>
+                        <%= hidden_field_tag :number , :value => 1 %>
                     </div>
                     <div>
                         <%= label_tag '作り方' %>
-                        <%= text_area_tag 'direction[comment]','',class: 'form-control' %>
+                        <%= text_area_tag 'direction1[comment]','',class: 'form-control' %>
                     </div>
                     <div>
                         <%= label_tag '写真' %>
@@ -50,19 +51,18 @@
 
                     <div>
                         <h2>2</h2>
+                        <%= hidden_field_tag :number , :value => 2 %>
                     </div>
                     <div>
                         <%= label_tag '作り方' %>
-                        <%= text_area_tag 'comment2','',class: 'form-control' %>
+                        <%= text_area_tag 'direction2[comment]','',class: 'form-control' %>
                     </div>
                     <div>
                         <%= label_tag '写真' %>
-                        <%= file_field_tag 'image2' %>
+                        <%= file_field_tag 'direction[image]' %>
                     </div>
                 </div>
 
-
-                
                 <%= submit_tag  '送信', class: 'btn btn-black btn-block' %>
                 <% end %>
 
